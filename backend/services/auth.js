@@ -48,7 +48,7 @@ exports.signup = asyncErrorWrapper(async (req, res, next) => {
   if (user) {
     const message = "user already exists";
     const error = new Error({ message });
-    error.status(422);
+    error.status = 422;
     next(error);
   } else {
     const user = new User({
@@ -85,11 +85,12 @@ exports.signin = async (req, res, next) => {
       return next(authError);
     }
     if (!user) {
-      return res.redirect(`/?loginError=${info.msg}`);
+      console.error("error = ", info.message);
+      return next(authError);
     }
     return req.login(user, (loginError) => {
       if (loginError) {
-        console.error(loginError);
+        console.error(loginError.message);
         return next(loginError);
       }
       let access_token = createJWT(user.email, user._id, 3600);

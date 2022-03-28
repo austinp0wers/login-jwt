@@ -47,13 +47,13 @@ module.exports = (app) => {
   app.use("*", (req, res, next) => {
     const message = "wrong path";
     const error = new Error({ message });
-    error.status(400);
+    error.status = 400;
     next(error);
   });
 
   app.use((err, req, res, next) => {
-    err.status = err.status || 500;
+    const { status, type, message } = err;
     console.error(err.message);
-    res.send("there has been an error");
+    return res.status(status).send({ type, message });
   });
 };

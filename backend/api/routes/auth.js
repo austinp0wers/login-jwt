@@ -15,6 +15,7 @@ const {
 } = require("../middlewares/authMiddleware");
 // Load user Model
 
+// /api/auth/ + routes
 const authRoutes = (app) => {
   app.use("/auth", router);
 
