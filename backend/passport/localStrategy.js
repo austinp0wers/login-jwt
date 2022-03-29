@@ -22,10 +22,10 @@ module.exports = () => {
             if (checkPassword) {
               done(null, existingUser);
             } else {
-              done(null, false, { msg: "비밀번호가 일치하지 않습니다." });
+              done(null, false, { message: "비밀번호가 일치하지 않습니다." });
             }
           } else {
-            done(null, false, { msg: "유저가 존재하지 않습니다." });
+            done(null, false, { message: "유저가 존재하지 않습니다." });
           }
         } catch (error) {
           console.error(error);

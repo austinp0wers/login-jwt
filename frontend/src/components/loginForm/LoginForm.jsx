@@ -48,6 +48,7 @@ const Login = (props) => {
       setLoading(false);
     }
   };
+
   if (isLoggedIn) {
     return <Redirect to="/profile" />;
   }
@@ -74,10 +75,10 @@ const Login = (props) => {
           <div className="form-group">
             <label htmlFor="password">Password</label>
             <Input
+              autoComplete="off"
               type="password"
               className="form-control"
               name="password"
-              value={password}
               onChange={onChangePassword}
               validations={[required]}
             />

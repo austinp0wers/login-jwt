@@ -86,7 +86,11 @@ exports.signin = async (req, res, next) => {
     }
     if (!user) {
       console.error("error = ", info.message);
-      return next(authError);
+      error = new Error();
+      error.status = 500;
+      error.message = "User does not exist!!";
+      error.type = "LOGIN_FAIL";
+      return next(error);
     }
     return req.login(user, (loginError) => {
       if (loginError) {

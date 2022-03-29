@@ -44,7 +44,8 @@ module.exports = (app) => {
   app.get("/", (req, res) => {
     res.send("welcome.");
   });
-  app.use("*", (req, res, next) => {
+
+  app.use((req, res, next) => {
     const message = "wrong path";
     const error = new Error({ message });
     error.status = 400;
