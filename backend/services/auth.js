@@ -21,10 +21,17 @@ const asyncErrorWrapper = (func) => {
 };
 
 exports.signup = asyncErrorWrapper(async (req, res, next) => {
-  let { name, email, password, password_confirmation } = req.body;
+  let { username, email, password, confirmPassword } = req.body;
+  console.log(
+    "🚀 ~ file: auth.js ~ line 25 ~ exports.signup=asyncErrorWrapper ~ username, email, password, confirmPassword",
+    username,
+    email,
+    password,
+    confirmPassword
+  );
   let errors = [];
-  if (!name) {
-    errors.push({ name: "required" });
+  if (!username) {
+    errors.push({ username: "required" });
   }
   if (!email) {
     errors.push({ email: "required" });
@@ -35,10 +42,10 @@ exports.signup = asyncErrorWrapper(async (req, res, next) => {
   if (!password) {
     errors.push({ password: "required" });
   }
-  if (!password_confirmation) {
+  if (!confirmPassword) {
     errors.push({ confirmPassword: "required" });
   }
-  if (password != password_confirmation) {
+  if (password != confirmPassword) {
     errors.push({ password: "mismatch" });
   }
   if (errors.length > 0) {
@@ -47,12 +54,13 @@ exports.signup = asyncErrorWrapper(async (req, res, next) => {
   const user = await User.findOne({ email: email });
   if (user) {
     const message = "user already exists";
+    console.error(message);
     const error = new Error({ message });
     error.status = 422;
     next(error);
   } else {
     const user = new User({
-      name: name,
+      name: username,
       email: email,
       password: password,
     });
