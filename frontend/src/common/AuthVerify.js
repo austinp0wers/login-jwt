@@ -1,9 +1,9 @@
 import React from "react";
 import { history } from "../helpers/history";
 
-const parseJwt = (token) => {
+const parseJwt = (accessToken) => {
   try {
-    return JSON.parse(atob(token.split(".")[1]));
+    return JSON.parse(atob(accessToken.split(".")[1]));
   } catch (e) {
     return null;
   }
@@ -14,8 +14,11 @@ const AuthVerify = (props) => {
     const user = JSON.parse(localStorage.getItem("user"));
 
     if (user) {
-      const decodedJwt = parseJwt(user.accessToken);
-
+      const decodedJwt = parseJwt(user);
+      console.log(
+        "🚀 ~ file: AuthVerify.js ~ line 18 ~ history.listen ~ decodedJwt",
+        decodedJwt
+      );
       if (decodedJwt.exp * 1000 < Date.now()) {
         props.logOut();
       }

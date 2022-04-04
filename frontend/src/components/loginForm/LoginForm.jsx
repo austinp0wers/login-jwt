@@ -36,8 +36,8 @@ const Login = (props) => {
     setLoading(true);
     form.current.validateAll();
     if (checkBtn.current.context._errors.length === 0) {
-      const response = await dispatch(login(email, password))
       try {
+        const response = await dispatch(login(email, password))
         if (response) {
           props.history.push("/profile");
           window.location.reload();

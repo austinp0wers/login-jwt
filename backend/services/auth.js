@@ -22,13 +22,6 @@ const asyncErrorWrapper = (func) => {
 
 exports.signup = asyncErrorWrapper(async (req, res, next) => {
   let { username, email, password, confirmPassword } = req.body;
-  console.log(
-    "🚀 ~ file: auth.js ~ line 25 ~ exports.signup=asyncErrorWrapper ~ username, email, password, confirmPassword",
-    username,
-    email,
-    password,
-    confirmPassword
-  );
   let errors = [];
   if (!username) {
     errors.push({ username: "required" });
@@ -113,7 +106,7 @@ exports.signin = async (req, res, next) => {
         if (decoded) {
           return res.status(200).json({
             success: true,
-            token: access_token,
+            accessToken: access_token,
             message: user,
           });
         }
