@@ -31,19 +31,20 @@ const Login = (props) => {
     const password = e.target.value;
     setPassword(password);
   };
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
     form.current.validateAll();
     if (checkBtn.current.context._errors.length === 0) {
-      dispatch(login(email, password))
-        .then(() => {
+      const response = await dispatch(login(email, password))
+      try {
+        if (response) {
           props.history.push("/profile");
           window.location.reload();
-        })
-        .catch(() => {
+        }
+      }catch(error){
           setLoading(false);
-        });
+        };
     } else {
       setLoading(false);
     }
