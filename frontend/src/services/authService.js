@@ -11,24 +11,32 @@ const register = (username, email, password, confirmPassword) => {
   });
 };
 
-const login = (email, password) => {
-  return axios
-    .post(API_URL + "signin", {
-      email,
-      password,
-    })
-    .then((response) => {
-      if (response.data.accessToken) {
-        console.log("set token");
-        localStorage.setItem("user", JSON.stringify(response.data.accessToken));
-      }
-
-      return response.data;
-    });
+const login = async (email, password) => {
+  const response = await axios.post(API_URL + "signin", {
+    email,
+    password,
+  });
+  if (response) {
+    console.log(
+      "🚀 ~ file: authService.js ~ line 21 ~ login ~ response",
+      response
+    );
+    if (response.data.accessToken) {
+      localStorage.setItem(
+        "accessToken",
+        JSON.stringify(response.data.accessToken)
+      );
+    }
+    console.log(
+      "🚀 ~ file: authService.js ~ line 28 ~ login ~ response.data",
+      response.data
+    );
+    return response.data;
+  }
 };
 
 const logout = () => {
-  localStorage.removeItem("user");
+  localStorage.removeItem("accessToken");
 };
 
 export default {

@@ -36,15 +36,14 @@ const Login = (props) => {
     setLoading(true);
     form.current.validateAll();
     if (checkBtn.current.context._errors.length === 0) {
-      try {
         const response = await dispatch(login(email, password))
+        console.log("🚀 ~ file: LoginForm.jsx ~ line 41 ~ handleLogin ~ response", response)
         if (response) {
           props.history.push("/profile");
           window.location.reload();
         }
-      }catch(error){
-          setLoading(false);
-        };
+      console.log("🚀 ~ file: LoginForm.jsx ~ line 46 ~ handleLogin ~ error");
+        setLoading(false);
     } else {
       setLoading(false);
     }

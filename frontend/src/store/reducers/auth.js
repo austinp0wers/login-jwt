@@ -6,10 +6,11 @@ import {
   LOGOUT,
 } from "../types";
 
-const user = JSON.parse(localStorage.getItem("user"));
-const initialState = user
-  ? { isLoggedIn: true, user }
-  : { isLoggedIn: false, user: null };
+const userToken = JSON.parse(localStorage.getItem("accessToken"));
+const initialState = userToken
+  ? { isLoggedIn: true, user: { accessToken: userToken } }
+  : { isLoggedIn: false, user: { accessToken: null } };
+console.log("initialState", initialState);
 
 export default function (state = initialState, action) {
   const { type, payload } = action;
@@ -28,19 +29,21 @@ export default function (state = initialState, action) {
       return {
         ...state,
         isLoggedIn: true,
-        user: payload.user,
+        user: {
+          accessToken: payload.accessToken,
+        },
       };
     case LOGIN_FAIL:
       return {
         ...state,
         isLoggedIn: false,
-        user: null,
+        userToken: null,
       };
     case LOGOUT:
       return {
         ...state,
         isLoggedIn: false,
-        user: null,
+        userToken: null,
       };
     default:
       return state;

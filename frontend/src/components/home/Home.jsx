@@ -26,14 +26,14 @@ const Home = () => {
 
         setContent(_content);
       }
-    );
+      );
   }, []);
   return (
     <div className="container">
       <header className="jumbotron">
         <ul>
           {content.map(user => (
-            <li key={user.name}>name : {user.name} <br></br> email : {user.email}</li>
+            <li key={user.email}>name : {user.name} <br></br> email : {user.email}</li>
           ))}
         </ul>
       </header>

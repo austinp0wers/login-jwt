@@ -87,15 +87,16 @@ exports.signin = async (req, res, next) => {
     }
     if (!user) {
       console.error("error = ", info.message);
-      error = new Error();
-      error.status = 500;
-      error.message = "User does not exist!!";
-      error.type = "LOGIN_FAIL";
-      return next(error);
+      const message = info.message;
+      console.log("msg", typeof msg);
+      const err = new Error(message);
+      err.status = 500;
+      err.type = "LOGIN_FAIL";
+      console.log("ERR", err);
+      return next(err);
     }
     return req.login(user, (loginError) => {
       if (loginError) {
-        console.error(loginError.message);
         return next(loginError);
       }
       let access_token = createJWT(user.email, user._id, 3600);
@@ -107,6 +108,7 @@ exports.signin = async (req, res, next) => {
           return res.status(200).json({
             success: true,
             accessToken: access_token,
+            type: "LOGIN_SUCCESS",
             message: user,
           });
         }
