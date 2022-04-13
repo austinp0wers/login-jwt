@@ -20,7 +20,6 @@ export const register =
       if (response) {
         dispatch({ type: REGISTER_SUCCESS });
       }
-      console.log(response.data.message);
       dispatch({ type: SET_MESSAGE, payload: response.data.message });
       return Promise.resolve();
     } catch (error) {
@@ -45,7 +44,6 @@ export const register =
 export const login = (email, password) => (dispatch) => {
   AuthService.login(email, password).then(
     (data) => {
-      console.log("🚀 ~ file: auth.js ~ line 53 ~ login ~ data", data);
       dispatch({
         type: LOGIN_SUCCESS,
         payload: data,

@@ -86,13 +86,10 @@ exports.signin = async (req, res, next) => {
       return next(authError);
     }
     if (!user) {
-      console.error("error = ", info.message);
       const message = info.message;
-      console.log("msg", typeof msg);
       const err = new Error(message);
       err.status = 500;
       err.type = "LOGIN_FAIL";
-      console.log("ERR", err);
       return next(err);
     }
     return req.login(user, (loginError) => {
@@ -156,14 +153,14 @@ exports.signin = async (req, res, next) => {
 //           };
 //           transporter.sendMail(message, async (err, info) => {
 //             if (err) {
-//               console.log("Error occurred. " + err.message);
+//               console.error("Error occurred. " + err.message);
 //               res.status(500).json({
 //                 message: "Service not working atm. try again later ",
 //               });
 //               return process.exit(1);
 //             }
 
-//             console.log("otp sent");
+//             console.error("otp sent");
 //             let myFind = new fpassmodel({
 //               otp: otpGen,
 //               email: clientMail,
@@ -176,14 +173,14 @@ exports.signin = async (req, res, next) => {
 //                 console.log("OTP saved");
 //               }
 //             } catch (err) {
-//               console.log(err.message);
+//               console.error(err.message);
 //             }
 //           });
 //         });
 //       }
 //     })
 //     .catch((err) => {
-//       console.log(err.message);
+//       console.error(err.message);
 //     });
 // });
 

@@ -100,11 +100,9 @@ const Register = () => {
       dispatch(register(username, email, password, confirmPassword))
         .then(() => {
           setSuccessful(true);
-          console.log("🚀 ~ file: SignUpForm.jsx ~ line 93 ~ .then ~ setSuccessful(true);", setSuccessful(true))
         })
         .catch(() => {
           setSuccessful(false);
-          console.log("🚀 ~ file: SignUpForm.jsx ~ line 96 ~ handleRegister ~ setSuccessful(false)", setSuccessful(false))
         });
     }
   };

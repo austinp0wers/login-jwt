@@ -33,23 +33,7 @@ export default function Navbar() {
               </Link>
             </li>
 
-            {/* {showModeratorBoard && (
-              <li className="nav-item">
-                <Link to={"/mod"} className="nav-link">
-                  Moderator Board
-                </Link>
-              </li>
-            )} */}
-            {/* 
-            {showAdminBoard && (
-              <li className="nav-item">
-                <Link to={"/admin"} className="nav-link">
-                  Admin Board
-                </Link>
-              </li>
-            )} */}
-
-            {currentUser && (
+            {currentUser.accessToken && (
               <li className="nav-item">
                 <Link to={"/profile"} className="nav-link">
                   Profile
@@ -58,7 +42,7 @@ export default function Navbar() {
             )}
           </div>
 
-          {currentUser ? (
+          {currentUser.accessToken ? (
             <div className="navbar-nav ml-auto">
               <li className="nav-item">
                 <Link to={"/profile"} className="nav-link">

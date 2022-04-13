@@ -4,10 +4,8 @@ import { useSelector } from "react-redux";
 
 const Profile = () => {
   const { user: currentUser } = useSelector((state) => state.auth);
-  console.log('currentUser.accessToken = ', currentUser);
   
   if (!currentUser) {
-    console.log('back to login')
     return <Redirect to="/login" />;
   }
   return (

@@ -53,7 +53,7 @@ module.exports = (app) => {
   });
 
   app.use((err, req, res, next) => {
-    console.log("🚀 ~ file: express.js ~ line 56 ~ app.use ~ err", err);
+    console.error("🚀 ~ file: express.js ~ line 56 ~ app.use ~ err", err);
     const { status, type, message } = err;
     return res.status(status).send({ type, message });
   });

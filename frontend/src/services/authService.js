@@ -17,20 +17,12 @@ const login = async (email, password) => {
     password,
   });
   if (response) {
-    console.log(
-      "🚀 ~ file: authService.js ~ line 21 ~ login ~ response",
-      response
-    );
     if (response.data.accessToken) {
       localStorage.setItem(
         "accessToken",
         JSON.stringify(response.data.accessToken)
       );
     }
-    console.log(
-      "🚀 ~ file: authService.js ~ line 28 ~ login ~ response.data",
-      response.data
-    );
     return response.data;
   }
 };

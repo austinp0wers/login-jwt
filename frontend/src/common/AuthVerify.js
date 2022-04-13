@@ -12,6 +12,10 @@ const parseJwt = (accessToken) => {
 const AuthVerify = (props) => {
   history.listen(() => {
     const user = JSON.parse(localStorage.getItem("accessToken"));
+    console.log(
+      "🚀 ~ file: AuthVerify.js ~ line 15 ~ history.listen ~ user",
+      user
+    );
 
     if (user) {
       const decodedJwt = parseJwt(user);

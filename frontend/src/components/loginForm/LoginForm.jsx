@@ -37,12 +37,10 @@ const Login = (props) => {
     form.current.validateAll();
     if (checkBtn.current.context._errors.length === 0) {
         const response = await dispatch(login(email, password))
-        console.log("🚀 ~ file: LoginForm.jsx ~ line 41 ~ handleLogin ~ response", response)
         if (response) {
           props.history.push("/profile");
           window.location.reload();
         }
-      console.log("🚀 ~ file: LoginForm.jsx ~ line 46 ~ handleLogin ~ error");
         setLoading(false);
     } else {
       setLoading(false);
