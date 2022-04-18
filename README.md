@@ -3,7 +3,7 @@
 I have been using sessions as a way to check user authentication. Personally i thought that was the best way to do so.
 (since it's the only way i know)
 
-After a while, i saw a youtube clip on how sessions essentially save all the users session information on its memory. 
+After a while, i saw a youtube clip on how sessions essentially save all the users session information on its memory. <br> 
 <b>The downside to this</b> is that with huge amounts of users, the server will have less memory to execute it's program 
 and eventually decrease the speed of execution due to insufficient memory on the server.
 
